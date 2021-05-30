@@ -9,10 +9,23 @@ h1 {
 
 .thread-sidebar {
   background-color: #565456;
+  border-right: 1px solid black;
+  padding: 0px;
   min-height: calc(100vh - 56px); }
 
-.nav-link {
-  color: white; }
+.nav .nav-item {
+  padding: 10px 5px; }
+  .nav .nav-item .nav-link {
+    color: white;
+    padding: 10px;
+    border-bottom: 1px solid gray; }
+  .nav .nav-item .nav-link.active {
+    background-color: #1a8aff;
+    border-radius: 5px;
+    border-bottom: 0px; }
+  .nav .nav-item .nav-link:hover {
+    color: white;
+    font-weight: bold; }
 
 .thread-content {
   background-color: #1e1e1e;

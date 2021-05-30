@@ -18,11 +18,32 @@ h1 {
 
 .thread-sidebar {
   background-color: $sidebar-bg;
+  border-right: 1px solid black;
+  padding: 0px;
   min-height: calc(100vh - 56px);
 }
 
-.nav-link {
-  color: white;
+.nav {
+  .nav-item {
+    padding: 10px 5px;
+
+    .nav-link {
+      color: white;
+      padding: 10px;
+      border-bottom: 1px solid gray;
+    }
+
+    .nav-link.active {
+      background-color: $note-bg;
+      border-radius: 5px;
+      border-bottom: 0px;
+    }
+
+    .nav-link:hover {
+      color: white;
+      font-weight: bold;
+    }
+  }
 }
 
 .thread-content {
