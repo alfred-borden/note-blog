@@ -36,8 +36,11 @@ def index():
 
 @app.route('/<int:post_id>')
 def post(post_id):
+    conn = get_db_connection()
+    posts = conn.execute('SELECT * FROM posts WHERE id <> ?', 
+                         (post_id,)).fetchall()
     post = get_post(post_id)
-    return render_template('post.html', post=post)
+    return render_template('post.html', posts=posts, active_post=post)
 
 
 @app.route('/create', methods=('GET', 'POST'))
@@ -45,6 +48,10 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
+        if 'excerpt' in request.form:
+            content_type = 'excerpt'
+        elif 'note' in request.form:
+            content_type = 'note'
 
         if not title:
             flash('Title is required!')
@@ -90,3 +97,7 @@ def delete(id):
     conn.close()
     flash('"{}" was successfully deleted!'.format(post['title']))
     return redirect(url_for('index'))
+
+
+if __name__ == '__main__':
+    app.run()
