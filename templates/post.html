@@ -7,16 +7,18 @@
         <li class="nav-item">
           <a href="#" class="nav-link active">{% block title %} {{ active_post['title'] }} {% endblock %}</a>
           {% for post in posts %}
-            <a href="{{ url_for('post', post_id=post['id']) }}" class="nav-link">{{ post['title'] }}</a>
+            <a href="{{ url_for('post', post_id=post['post_id']) }}" class="nav-link">{{ post['title'] }}</a>
           {% endfor %}
         </li>
       </ul>
     </div>
     <div class="thread-content col-9 col-md-10">
       <p class="{{ active_post['content_type'] }} content">{{ active_post['content'] }}</p>
+      {% if active_post['content_type'] == "note" %}
       <span class="d-flex align-self-end time-stamp">{{ active_post['created'] }}</span>
-      <p class="{{ active_post['content_type'] }} content">{{ active_post['content'] }}</p>
+      {% else %}
       <span class="time-stamp">{{ active_post['created'] }}</span>
+      {% endif %}
     </div>
   </div>
 {% endblock %}
